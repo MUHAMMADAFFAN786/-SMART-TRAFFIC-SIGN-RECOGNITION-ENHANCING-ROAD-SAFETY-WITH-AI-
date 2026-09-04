@@ -1,0 +1,7 @@
+tensorflow
+opencv-python
+numpy
+pandas
+matplotlib
+pyttsx3
+pyserial
