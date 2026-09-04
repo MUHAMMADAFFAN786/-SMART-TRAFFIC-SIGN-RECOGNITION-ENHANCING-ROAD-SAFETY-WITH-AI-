@@ -1,21 +1,15 @@
 # 🚦 SMART Traffic Sign Recognition: Enhancing Road Safety with AI
 
-<p align="center">
-
 ### 🧠 AI • Computer Vision • Deep Learning • IoT • Arduino
 
-A real-time traffic sign recognition and driver-assistance system using<br>
+A real-time traffic sign recognition and driver-assistance system using
 CNN, OpenCV, Voice Alerts and Arduino-based hardware feedback.
-
-</p>
 
 ---
 
 ## 🌟 Overview
 
-**SMART Traffic Sign Recognition: Enhancing Road Safety with AI** is an
-AI/ML-based academic project designed to recognize traffic signs from a
-live webcam feed and provide driver-assistance feedback.
+**SMART Traffic Sign Recognition: Enhancing Road Safety with AI** is an AI/ML-based academic project designed to recognize traffic signs from a live webcam feed and provide driver-assistance feedback.
 
 The system combines:
 
@@ -27,23 +21,18 @@ The system combines:
 - 💡 **LED & Buzzer Alerts**
 - 📝 **Recognition Logging**
 
-The model is trained using the **German Traffic Sign Recognition Benchmark
-(GTSRB)** dataset and supports classification across **43 traffic sign
-categories**.
+The model is trained using the **German Traffic Sign Recognition Benchmark (GTSRB)** dataset and supports classification across **43 traffic sign categories**.
 
-During real-time operation, the webcam captures frames, identifies potential
-traffic-sign regions, preprocesses the detected region and passes it to the
-trained CNN model.
+During real-time operation, the webcam captures frames, identifies potential traffic-sign regions, preprocesses the detected region and passes it to the trained CNN model.
 
-Predictions are filtered using a confidence threshold and stabilized across
-multiple frames to reduce unreliable alerts.
+Predictions are filtered using a confidence threshold and stabilized across multiple frames to reduce unreliable alerts.
 
 ---
 
-# ✨ Key Features
+## ✨ Key Features
 
-| Feature | Description |
-|---|---|
+| **Feature** | **Description** |
+| ------------------------------- | --------------------------------------------- |
 | 🚦 **43-Class Recognition** | Classification of 43 traffic sign categories |
 | 🧠 **CNN Model** | Custom CNN implemented using TensorFlow/Keras |
 | 📷 **Real-Time Detection** | Live webcam-based traffic sign recognition |
@@ -59,49 +48,49 @@ multiple frames to reduce unreliable alerts.
 
 ---
 
-# 🏗️ System Architecture
+## 🏗️ System Architecture
 
 ```text
                          📷 LIVE WEBCAM
                               │
                               ▼
-                  ┌────────────────────────┐
-                  │    👁️ OPENCV PROCESSING │
-                  │                        │
-                  │  Frame Capture         │
-                  │  ROI Detection         │
-                  │  Image Preprocessing   │
-                  └───────────┬────────────┘
+                   ┌────────────────────────┐
+                   │    👁️ OPENCV PROCESSING │
+                   │                        │
+                   │  Frame Capture         │
+                   │  ROI Detection         │
+                   │  Image Preprocessing   │
+                   └───────────┬────────────┘
                               │
                               ▼
-                  ┌────────────────────────┐
-                  │      🧠 CNN MODEL      │
-                  │                        │
-                  │ Traffic Sign           │
-                  │ Classification         │
-                  └───────────┬────────────┘
+                   ┌────────────────────────┐
+                   │      🧠 CNN MODEL      │
+                   │                        │
+                   │ Traffic Sign           │
+                   │ Classification         │
+                   └───────────┬────────────┘
                               │
                               ▼
-                  ┌────────────────────────┐
-                  │ 📊 Prediction &        │
-                  │    Confidence Filter   │
-                  └───────────┬────────────┘
+                   ┌────────────────────────┐
+                   │ 📊 Prediction &        │
+                   │    Confidence Filter   │
+                   └───────────┬────────────┘
                               │
-                   ┌──────────┴──────────┐
-                   │                     │
-                   ▼                     ▼
-             🔊 VOICE ALERT          🔌 ARDUINO
-               pyttsx3              LED / BUZZER
-                   │                     │
-                   └──────────┬──────────┘
+                       ┌──────┴──────┐
+                       │             │
+                       ▼             ▼
+                 🔊 VOICE ALERT   🔌 ARDUINO
+                    pyttsx3       LED / BUZZER
+                       │             │
+                       └──────┬──────┘
                               ▼
-                       📝 EVENT LOGGING
+                        📝 EVENT LOGGING
 🧠 Machine Learning Model
 
 The recognition system uses a custom Convolutional Neural Network (CNN)
 implemented using TensorFlow and Keras.
 
-CNN Architecture
+🏗️ CNN Architecture
 Input Image
 32 × 32 × 3
      │
@@ -178,11 +167,11 @@ The system follows the following workflow:
  ▼         ▼           ▼
 🖥️ Visual  🔊 Voice    🔌 Arduino
 Feedback   Alert       Alert
-      \        |          /
-       \       |         /
-        └──────┴────────┘
-               ↓
-          📝 Event Log
+    \        |          /
+     \       |         /
+      └──────┴────────┘
+             ↓
+         📝 Event Log
 
 This pipeline helps reduce unstable predictions and unnecessary alerts during
 live testing.
@@ -228,11 +217,11 @@ Python Application
        │
        │ Serial Communication
        ▼
-    Arduino
+     Arduino
        │
-   ┌───┴────┐
-   ▼        ▼
- 💡 LED    🔔 Buzzer
+    ┌───┴────┐
+    ▼        ▼
+  💡 LED    🔔 Buzzer
 Arduino Alert Logic
 Serial Command	Hardware Response
 STOP	White LED ON + Buzzer ON
@@ -361,7 +350,9 @@ environment.
 
 2️⃣ Create Virtual Environment
 python -m venv .venv
-Windows
+
+Windows:
+
 .venv\Scripts\activate
 3️⃣ Install Dependencies
 pip install -r requirements.txt
@@ -477,21 +468,13 @@ This allows recognition activity during testing to be reviewed after a session.
 This project demonstrates concepts relevant to:
 
 🚘 Advanced Driver Assistance Systems (ADAS)
-
 🚦 Intelligent Transportation Systems
-
 🏙️ Smart Mobility
-
 👁️ Computer Vision
-
 🧠 Deep Learning
-
 ⚡ Real-Time AI Applications
-
 🔌 Embedded AI Systems
-
 🚗 Autonomous Driving Research
-
 ⚠️ Limitations
 
 This project is an academic and research prototype.
@@ -532,7 +515,7 @@ Category	Details
 🏫 Institution	COER University, Roorkee
 📚 Project Type	Academic Project
 🚘 Application Area	Intelligent Transportation / Driver Assistance
-👨‍💻 Project Team
+👥 Project Team
 Muhammad Affan
 Keshav Dixit
 Mohd Zaid
