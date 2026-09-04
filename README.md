@@ -84,7 +84,12 @@ Predictions are filtered using a confidence threshold and stabilized across mult
                        │             │
                        └──────┬──────┘
                               ▼
-                        📝 EVENT LOGGING
+                      📝 EVENT LOGGING
+
+
+
+
+
 ## 🧠 Machine Learning Model
 
 The recognition system uses a custom Convolutional Neural Network (CNN)
