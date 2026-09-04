@@ -1,238 +1,410 @@
-# Real-Time Traffic Sign Recognition with IoT-Based Driver Assistance
+# 🚦 SMART Traffic Sign Recognition: Enhancing Road Safety with AI
 
-A real-time computer vision and deep learning system for recognizing traffic signs and providing driver-assistance feedback through visual, voice, and Arduino-based alerts.
+<p align="center">
 
-## Overview
+### 🧠 AI • Computer Vision • Deep Learning • IoT • Arduino
 
-Traffic sign recognition is an important component of intelligent transportation and driver-assistance systems. This project explores how a Convolutional Neural Network (CNN) can be combined with computer vision and embedded hardware to recognize traffic signs from a live camera feed.
+A real-time traffic sign recognition and driver-assistance system using<br>
+CNN, OpenCV, Voice Alerts and Arduino-based hardware feedback.
 
-The system is trained on the German Traffic Sign Recognition Benchmark (GTSRB) dataset and supports classification across 43 traffic sign categories.
-
-During real-time operation, the webcam captures frames, identifies potential traffic-sign regions, preprocesses the detected region, and passes it to the trained CNN model. Predictions are filtered using a confidence threshold and stabilized across multiple frames to reduce unreliable alerts.
-
-The recognized sign can then be presented through the application interface, announced using text-to-speech, and communicated to an Arduino-based alert system.
+</p>
 
 ---
 
-## Key Features
+## 🌟 Overview
 
-- 43-class traffic sign classification
-- CNN-based image recognition using TensorFlow/Keras
-- Real-time webcam processing with OpenCV
-- Region-of-interest based sign detection
-- Confidence-based prediction filtering
-- Multi-frame prediction stabilization
-- Voice alerts using `pyttsx3`
-- Arduino serial communication
-- LED and buzzer based driver alerts
-- Traffic recognition event logging
-- Fallback simulation mode when Arduino is unavailable
+**SMART Traffic Sign Recognition: Enhancing Road Safety with AI** is an
+AI/ML-based academic project designed to recognize traffic signs from a
+live webcam feed and provide driver-assistance feedback.
+
+The system combines:
+
+- 🧠 **Convolutional Neural Network (CNN)**
+- 👁️ **Computer Vision**
+- 📷 **Real-Time Webcam Processing**
+- 🔊 **Voice Assistance**
+- 🔌 **Arduino Hardware**
+- 💡 **LED & Buzzer Alerts**
+- 📝 **Recognition Logging**
+
+The model is trained using the **German Traffic Sign Recognition Benchmark
+(GTSRB)** dataset and supports classification across **43 traffic sign
+categories**.
+
+During real-time operation, the webcam captures frames, identifies potential
+traffic-sign regions, preprocesses the detected region and passes it to the
+trained CNN model.
+
+Predictions are filtered using a confidence threshold and stabilized across
+multiple frames to reduce unreliable alerts.
 
 ---
 
-## System Architecture
+# ✨ Key Features
+
+| Feature | Description |
+|---|---|
+| 🚦 **43-Class Recognition** | Classification of 43 traffic sign categories |
+| 🧠 **CNN Model** | Custom CNN implemented using TensorFlow/Keras |
+| 📷 **Real-Time Detection** | Live webcam-based traffic sign recognition |
+| 🎯 **ROI Detection** | Detection of potential traffic-sign regions |
+| 📊 **Confidence Filtering** | Filters low-confidence predictions |
+| 🔄 **Prediction Stabilization** | Multi-frame prediction stabilization |
+| 🔊 **Voice Alerts** | Audible notifications using pyttsx3 |
+| 🔌 **Arduino Integration** | Serial communication with Arduino |
+| 💡 **LED Alerts** | Visual hardware warning indicators |
+| 🔔 **Buzzer Alerts** | Audible hardware warning |
+| 📝 **Event Logging** | Records detected signs and confidence |
+| 🛠️ **Simulation Mode** | Can operate without Arduino hardware |
+
+---
+
+# 🏗️ System Architecture
 
 ```text
-                    LIVE WEBCAM
-                         │
-                         ▼
-                ┌─────────────────┐
-                │ OpenCV Processing│
-                │                 │
-                │ Frame Capture   │
-                │ ROI Detection   │
-                │ Preprocessing   │
-                └────────┬────────┘
-                         │
-                         ▼
-                ┌─────────────────┐
-                │   CNN MODEL     │
-                │                 │
-                │ Traffic Sign    │
-                │ Classification  │
-                └────────┬────────┘
-                         │
-                         ▼
-                ┌─────────────────┐
-                │ Prediction &    │
-                │ Confidence      │
-                └───────┬─┬───────┘
-                        │ │
-             ┌──────────┘ └──────────┐
-             ▼                       ▼
-       VOICE ALERT               ARDUINO
-        pyttsx3              LED / BUZZER
-             │                       │
-             └───────────┬───────────┘
-                         ▼
-                  EVENT LOGGING
-Machine Learning Model
+                         📷 LIVE WEBCAM
+                              │
+                              ▼
+                  ┌────────────────────────┐
+                  │    👁️ OPENCV PROCESSING │
+                  │                        │
+                  │  Frame Capture         │
+                  │  ROI Detection         │
+                  │  Image Preprocessing   │
+                  └───────────┬────────────┘
+                              │
+                              ▼
+                  ┌────────────────────────┐
+                  │      🧠 CNN MODEL      │
+                  │                        │
+                  │ Traffic Sign           │
+                  │ Classification         │
+                  └───────────┬────────────┘
+                              │
+                              ▼
+                  ┌────────────────────────┐
+                  │ 📊 Prediction &        │
+                  │    Confidence Filter   │
+                  └───────────┬────────────┘
+                              │
+                   ┌──────────┴──────────┐
+                   │                     │
+                   ▼                     ▼
+             🔊 VOICE ALERT          🔌 ARDUINO
+               pyttsx3              LED / BUZZER
+                   │                     │
+                   └──────────┬──────────┘
+                              ▼
+                       📝 EVENT LOGGING
+🧠 Machine Learning Model
 
-The recognition model is a custom Convolutional Neural Network implemented using TensorFlow and Keras.
+The recognition system uses a custom Convolutional Neural Network (CNN)
+implemented using TensorFlow and Keras.
 
 CNN Architecture
-Input: 32 × 32 × 3
-        │
-        ▼
+Input Image
+32 × 32 × 3
+     │
+     ▼
 Conv2D — 32 Filters
-        │
+     │
+     ▼
 MaxPooling
-        │
-        ▼
+     │
+     ▼
 Conv2D — 64 Filters
-        │
+     │
+     ▼
 MaxPooling
-        │
-        ▼
+     │
+     ▼
 Conv2D — 128 Filters
-        │
+     │
+     ▼
 MaxPooling
-        │
-        ▼
+     │
+     ▼
 Flatten
-        │
-        ▼
+     │
+     ▼
 Dense — 256 Units
-        │
+     │
+     ▼
 Dropout — 0.5
-        │
-        ▼
+     │
+     ▼
 Dense — 43 Units
-        │
-        ▼
+     │
+     ▼
 Softmax
-Training Configuration
+     │
+     ▼
+Traffic Sign Class
+⚙️ Training Configuration
 Parameter	Configuration
-Input Size	32 × 32 × 3
-Classes	43
-Optimizer	Adam
-Loss Function	Categorical Cross-Entropy
-Epochs	15
-Train/Test Split	80/20
-Data Augmentation	Rotation, Zoom, Width/Height Shifts
-Framework	TensorFlow / Keras
-Real-Time Recognition Pipeline
+🖼️ Input Size	32 × 32 × 3
+🚦 Classes	43
+⚡ Optimizer	Adam
+📉 Loss Function	Categorical Cross-Entropy
+🔁 Epochs	15
+📊 Train/Test Split	80/20
+🔄 Data Augmentation	Rotation, Zoom, Width/Height Shifts
+🧠 Framework	TensorFlow / Keras
+🔄 Real-Time Recognition Pipeline
 
-The webcam application follows a multi-stage recognition process:
+The system follows the following workflow:
 
-Capture live video from the webcam.
-Convert and preprocess the camera frame.
-Detect potential traffic-sign regions.
-Filter unsuitable candidate regions.
-Resize the selected region to 32 × 32.
-Normalize the image.
-Run CNN inference.
-Apply the confidence threshold.
-Stabilize predictions using multiple consecutive frames.
-Display the recognized sign and confidence.
-Trigger voice and hardware feedback.
-Record the recognition event in the log.
+📷 Capture Webcam Frame
+          ↓
+🖼️ Image Preprocessing
+          ↓
+🎯 Potential Sign Region Detection
+          ↓
+🔍 Candidate Filtering
+          ↓
+📐 Resize → 32 × 32
+          ↓
+⚖️ Image Normalization
+          ↓
+🧠 CNN Prediction
+          ↓
+📊 Confidence Threshold
+          ↓
+🔄 Multi-Frame Stabilization
+          ↓
+🚦 Traffic Sign Recognition
+          ↓
+ ┌─────────┬───────────┬───────────┐
+ ▼         ▼           ▼
+🖥️ Visual  🔊 Voice    🔌 Arduino
+Feedback   Alert       Alert
+      \        |          /
+       \       |         /
+        └──────┴────────┘
+               ↓
+          📝 Event Log
 
-This approach helps reduce unstable predictions and unnecessary alerts during live operation.
+This pipeline helps reduce unstable predictions and unnecessary alerts during
+live testing.
 
-Driver Assistance Feedback
-Visual Feedback
+🚘 Driver Assistance
+🖥️ Visual Feedback
 
 The application displays:
 
-Detected traffic sign
-Prediction confidence
-Detection bounding box
-System status
-FPS information
-Voice Feedback
+🚦 Detected traffic sign
+📊 Prediction confidence
+📦 Detection bounding box
+⚡ System status
+🎞️ FPS information
+🔊 Voice Feedback
 
-The system uses pyttsx3 to provide audible notifications for recognized traffic signs.
+The system uses pyttsx3 to provide audible notifications for recognized
+traffic signs.
 
-Arduino Feedback
+This provides an additional way of communicating the detected sign during
+real-time operation.
+
+🔌 Arduino Feedback
 
 The application can communicate with an Arduino through serial communication.
 
-The Arduino interface can be used to demonstrate:
+The hardware interface demonstrates:
 
-LED indicators
-Warning buzzer
-Sign-specific alert responses
-Driver warning signals
+💡 LED indicators
+🔔 Warning buzzer
+🚦 Sign-specific responses
+⚠️ Driver warning signals
 
-Arduino connectivity is optional. The software can also operate using its fallback simulation behavior.
+Arduino connectivity is optional. The software can also operate using its
+fallback simulation behavior.
 
-Dataset
+🔧 Hardware Setup
 
-The model uses the German Traffic Sign Recognition Benchmark (GTSRB) dataset.
+The hardware prototype uses an Arduino connected to a breadboard containing
+LED indicators and a buzzer.
 
-The dataset contains 43 traffic sign categories and is used for training and evaluating the classification model.
+Python Application
+       │
+       │ Serial Communication
+       ▼
+    Arduino
+       │
+   ┌───┴────┐
+   ▼        ▼
+ 💡 LED    🔔 Buzzer
+Arduino Alert Logic
+Serial Command	Hardware Response
+STOP	White LED ON + Buzzer ON
+SPEED	Green LED ON
+CLEAR	LEDs OFF + Buzzer OFF
 
-The complete dataset is not included in this repository to keep the repository lightweight. Users should obtain the dataset separately and configure the dataset location before training.
+Arduino source code:
 
-Project Files
+hardware/
+└── arduino/
+    └── traffic_sign_alert.ino
+📸 Hardware & Project Demo
 
-The current repository contains the following core files:
+The project hardware photographs and demonstration video are stored directly
+inside the hardware folder.
 
-.
-├── README.md
-├── Train_model.py
-├── webcam_test.py
-├── class_mapping.json
-└── traffic_sign_model.h5
-File Description
+🔌 Hardware Setup
+<p align="center"> <img src="hardware/hardware_setup.jpg" width="700"> </p>
+
+Arduino + breadboard based driver-alert hardware prototype.
+
+🖥️ Complete Project Setup
+<p align="center"> <img src="hardware/project_demo.jpg" width="850"> </p>
+
+Complete setup showing the laptop, webcam, Arduino and alert circuit.
+
+🚦 System Demonstration
+<p align="center"> <img src="hardware/system_setup.jpg" width="850"> </p>
+
+Real-time AI application and hardware setup demonstration.
+
+🎥 Project Demo Video
+
+🎬 A real-time demonstration of traffic sign recognition,
+AI prediction and Arduino-based driver assistance.
+
+▶️ Watch the Project Demo
+
+🎬 Open Project Demo Video
+
+The demo shows:
+
+Webcam starts
+Traffic sign enters camera view
+CNN recognizes the sign
+Prediction appears on screen
+Voice alert is generated
+Arduino receives the alert
+LED/Buzzer responds
+📊 Dataset
+
+The project uses the German Traffic Sign Recognition Benchmark (GTSRB)
+dataset.
+
+The dataset contains 43 traffic sign categories and is used for training
+and evaluation of the classification model.
+
+⚠️ The complete GTSRB image dataset is intentionally not included in this
+repository to keep the repository lightweight.
+
+Users should obtain the dataset separately and configure the local dataset path
+before training.
+
+Dataset Structure
+GTSRB/
+├── Train/
+├── Test/
+├── Meta/
+├── Train.csv
+├── Test.csv
+└── Meta.csv
+📁 Project Structure
+SMART-TRAFFIC-SIGN-RECOGNITION-ENHANCING-ROAD-SAFETY-WITH-AI/
+│
+├── 📄 README.md
+├── 📄 LICENSE
+├── 📄 requirements.txt
+├── 📄 .gitignore
+│
+├── 🧠 Train_model.py
+├── 📷 webcam_test.py
+├── 🗂️ class_mapping.json
+├── 🤖 traffic_sign_model.h5
+│
+├── 🔌 hardware/
+│   ├── arduino/
+│   │   └── traffic_sign_alert.ino
+│   │
+│   ├── 📸 hardware_setup.jpg
+│   ├── 📸 project_demo.jpg
+│   ├── 📸 system_setup.jpg
+│   └── 🎥 project_demo.mp4
+│
+└── 📚 docs/
+    └── PROJECT REPORT.pdf
+📄 File Description
 File	Purpose
-Train_model.py	CNN model training and model generation
-webcam_test.py	Real-time webcam recognition and driver alerts
-class_mapping.json	Mapping of model classes to traffic-sign categories
-traffic_sign_model.h5	Trained CNN model
-README.md	Project documentation
-
-The GTSRB dataset is intentionally excluded from the repository.
-
-Technology Stack
+Train_model.py	🧠 CNN training and model generation
+webcam_test.py	📷 Real-time recognition and driver alerts
+class_mapping.json	🗂️ Traffic-sign class mapping
+traffic_sign_model.h5	🤖 Trained CNN model
+requirements.txt	📦 Python dependencies
+hardware/arduino/traffic_sign_alert.ino	🔌 Arduino alert program
+hardware/*.jpg	📸 Hardware and project photographs
+hardware/project_demo.mp4	🎥 Project demonstration video
+docs/PROJECT REPORT.pdf	📚 Detailed academic project report
+README.md	📖 Project documentation
+🛠️ Technology Stack
 Technology	Purpose
-Python	Core development
-TensorFlow	Deep learning framework
-Keras	CNN implementation
-OpenCV	Computer vision and webcam processing
-NumPy	Numerical computation
-Pandas	Data processing and logging
-Matplotlib	Visualization
-pyttsx3	Text-to-speech alerts
-Arduino	Hardware feedback
-Serial Communication	PC-to-Arduino communication
-GTSRB	Traffic sign dataset
-Installation
-1. Clone or Download the Repository
+🐍 Python	Core development
+🧠 TensorFlow	Deep Learning
+🔬 Keras	CNN implementation
+👁️ OpenCV	Computer Vision
+🔢 NumPy	Numerical computation
+🐼 Pandas	Data processing
+📈 Matplotlib	Visualization
+🔊 pyttsx3	Text-to-Speech
+🔌 Arduino	Hardware feedback
+📡 Serial Communication	PC ↔ Arduino communication
+🚦 GTSRB	Traffic-sign dataset
+🚀 Installation
+1️⃣ Download the Repository
 
-Download this repository from GitHub and open it in your development environment.
+Download this repository from GitHub and open it in your development
+environment.
 
-2. Create a Virtual Environment
+2️⃣ Create Virtual Environment
 python -m venv .venv
-
-Activate it on Windows:
-
+Windows
 .venv\Scripts\activate
-3. Install Required Libraries
+3️⃣ Install Dependencies
+pip install -r requirements.txt
 
-Install the dependencies required by the Python scripts:
+Or:
 
 pip install tensorflow opencv-python numpy pandas matplotlib pyttsx3 pyserial
-Dataset Configuration
+📂 Dataset Configuration
 
-Before training the model:
+Before training:
+
+Step 1
 
 Download the GTSRB dataset.
-Place the dataset on your local system.
-Ensure the dataset contains the required training images and CSV files.
-Update the dataset path in Train_model.py according to your local directory.
 
-The dataset itself should not be uploaded to this GitHub repository.
+Step 2
 
-Model Training
+Place it on your local computer.
 
-Run the training script:
+Step 3
+
+Make sure the dataset contains:
+
+Train/
+Test/
+Meta/
+Train.csv
+Test.csv
+Meta.csv
+Step 4
+
+Update the dataset path inside:
+
+Train_model.py
+
+⚠️ The complete dataset should not be uploaded to this repository.
+
+🧪 Model Training
+
+Run:
 
 python Train_model.py
-
-The training workflow includes:
-
+Training Workflow
 Dataset Loading
       ↓
 Image Preprocessing
@@ -254,104 +426,134 @@ Model Saving
 After training, the model is saved as:
 
 traffic_sign_model.h5
-Real-Time Detection
+📷 Real-Time Detection
 
-After the trained model is available, start the webcam application:
+Start the webcam application:
 
 python webcam_test.py
 
-The application uses the webcam to detect and classify traffic signs in real time.
+The application uses the webcam to recognize traffic signs in real time.
 
-The system can display the prediction, confidence score, bounding box, and system status while also providing voice and Arduino-based feedback.
+The system can display:
 
-Arduino Setup
+🖥️ Traffic sign
+📊 Confidence score
+📦 Bounding box
+🎞️ FPS
+⚡ System status
+
+And provide:
+
+🔊 Voice feedback
+🔌 Arduino feedback
+📝 Recognition logging
+🔌 Arduino Setup
 
 Arduino integration is optional.
 
-If an Arduino is connected:
-
-Connect the Arduino to the computer.
-Identify the assigned serial/COM port.
+Steps
+Connect Arduino to the computer.
+Identify the assigned COM/serial port.
 Configure the port in webcam_test.py.
-Upload the corresponding Arduino program.
+Open the Arduino sketch:
+hardware/arduino/traffic_sign_alert.ino
+Upload the Arduino program.
 Start the webcam recognition application.
-
-The hardware interface can be used to demonstrate warning signals through LEDs and a buzzer.
-
-Detection Logging
+📝 Detection Logging
 
 Recognition events can be recorded for later analysis.
 
-The log contains information such as:
+The log can contain:
 
-Time
-Detected Sign
-Confidence
+Field	Description
+🕒 Time	Recognition time
+🚦 Sign	Detected traffic sign
+📊 Confidence	Model confidence
 
 This allows recognition activity during testing to be reviewed after a session.
 
-Applications
+🎯 Applications
 
-The project demonstrates concepts relevant to:
+This project demonstrates concepts relevant to:
 
-Advanced Driver Assistance Systems (ADAS)
-Intelligent Transportation Systems
-Smart Mobility
-Computer Vision
-Deep Learning
-Real-Time AI Applications
-Embedded AI Systems
-Autonomous Driving Research
-Limitations
+🚘 Advanced Driver Assistance Systems (ADAS)
 
-This implementation is an academic and research prototype. Real-world performance may vary depending on environmental and camera conditions.
+🚦 Intelligent Transportation Systems
 
-Potential factors include:
+🏙️ Smart Mobility
 
-Lighting conditions
-Camera quality
-Sign distance
-Viewing angle
-Background complexity
-Motion blur
-Occlusion
-Real-world environmental conditions
+👁️ Computer Vision
 
-The system is intended to demonstrate an AI-based driver-assistance workflow and is not designed as a production automotive safety system.
+🧠 Deep Learning
 
-Future Development
+⚡ Real-Time AI Applications
 
-Possible future improvements include:
+🔌 Embedded AI Systems
 
-YOLO-based traffic-sign detection
-More robust object localization
-Multi-sign detection
-Temporal object tracking
-Improved low-light performance
-Real-world traffic datasets
-Model optimization for edge devices
-Raspberry Pi deployment
-NVIDIA Jetson deployment
-GPU-accelerated inference
-GPS-based contextual alerts
-Advanced ADAS integration
+🚗 Autonomous Driving Research
 
-Academic Project
-Degree: B.Tech – Artificial Intelligence & Machine Learning
-Institution: COER University, Roorkee
-Project Type: Academic Project
-Application Area: Intelligent Transportation / Driver Assistance
+⚠️ Limitations
 
-Project Team
+This project is an academic and research prototype.
+
+Real-world performance may vary depending on:
+
+💡 Lighting conditions
+📷 Camera quality
+📏 Sign distance
+📐 Viewing angle
+🌳 Background complexity
+💨 Motion blur
+🚧 Occlusion
+🌦️ Environmental conditions
+
+⚠️ This system is designed for educational and research demonstration and
+is not a production automotive safety system.
+
+🔮 Future Development
+
+Possible improvements include:
+
+🎯 YOLO-based traffic-sign detection
+🔍 More robust object localization
+🚦 Multi-sign detection
+🔄 Temporal object tracking
+🌙 Improved low-light performance
+🌍 Real-world traffic datasets
+⚡ Edge-device model optimization
+🍓 Raspberry Pi deployment
+🟢 NVIDIA Jetson deployment
+🚀 GPU-accelerated inference
+📍 GPS-based contextual alerts
+🚘 Advanced ADAS integration
+🎓 Academic Project
+Category	Details
+🎓 Degree	B.Tech – Artificial Intelligence & Machine Learning
+🏫 Institution	COER University, Roorkee
+📚 Project Type	Academic Project
+🚘 Application Area	Intelligent Transportation / Driver Assistance
+👨‍💻 Project Team
 Muhammad Affan
 Keshav Dixit
 Mohd Zaid
-License
+📜 License
 
 This project is licensed under the MIT License.
 
-Disclaimer
+See the LICENSE file for details.
+
+⚠️ Disclaimer
 
 This project is intended for educational and research purposes only.
 
-It is not a certified automotive safety system and should not be used as a replacement for professional driver-assistance or vehicle safety technologies.
+It is not a certified automotive safety system and should not be used as a
+replacement for professional driver-assistance or vehicle safety technologies.
+
+⭐ Project Highlights
+
+🧠 Deep Learning + 👁️ Computer Vision + 🚦 Traffic Sign Recognition
+
+🔌 IoT Hardware + 🔊 Voice Assistance
+
+Built as an academic AI/ML project to explore real-time intelligent
+driver-assistance systems.
