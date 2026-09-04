@@ -85,12 +85,13 @@ Predictions are filtered using a confidence threshold and stabilized across mult
                        └──────┬──────┘
                               ▼
                         📝 EVENT LOGGING
-🧠 Machine Learning Model
+## 🧠 Machine Learning Model
 
 The recognition system uses a custom Convolutional Neural Network (CNN)
 implemented using TensorFlow and Keras.
 
-🏗️ CNN Architecture
+### 🏗️ CNN Architecture
+
 Input Image
 32 × 32 × 3
      │
@@ -129,17 +130,25 @@ Softmax
      │
      ▼
 Traffic Sign Class
-⚙️ Training Configuration
-Parameter	Configuration
-🖼️ Input Size	32 × 32 × 3
-🚦 Classes	43
-⚡ Optimizer	Adam
-📉 Loss Function	Categorical Cross-Entropy
-🔁 Epochs	15
-📊 Train/Test Split	80/20
-🔄 Data Augmentation	Rotation, Zoom, Width/Height Shifts
-🧠 Framework	TensorFlow / Keras
-🔄 Real-Time Recognition Pipeline
+
+---
+
+## ⚙️ Training Configuration
+
+| Parameter | Configuration |
+|---|---|
+| 🖼️ Input Size | 32 × 32 × 3 |
+| 🚦 Classes | 43 |
+| ⚡ Optimizer | Adam |
+| 📉 Loss Function | Categorical Cross-Entropy |
+| 🔁 Epochs | 15 |
+| 📊 Train/Test Split | 80/20 |
+| 🔄 Data Augmentation | Rotation, Zoom, Width/Height Shifts |
+| 🧠 Framework | TensorFlow / Keras |
+
+---
+
+## 🔄 Real-Time Recognition Pipeline
 
 The system follows the following workflow:
 
@@ -176,17 +185,21 @@ Feedback   Alert       Alert
 This pipeline helps reduce unstable predictions and unnecessary alerts during
 live testing.
 
-🚘 Driver Assistance
-🖥️ Visual Feedback
+---
+
+## 🚘 Driver Assistance
+
+### 🖥️ Visual Feedback
 
 The application displays:
 
-🚦 Detected traffic sign
-📊 Prediction confidence
-📦 Detection bounding box
-⚡ System status
-🎞️ FPS information
-🔊 Voice Feedback
+- 🚦 Detected traffic sign
+- 📊 Prediction confidence
+- 📦 Detection bounding box
+- ⚡ System status
+- 🎞️ FPS information
+
+### 🔊 Voice Feedback
 
 The system uses pyttsx3 to provide audible notifications for recognized
 traffic signs.
@@ -194,21 +207,23 @@ traffic signs.
 This provides an additional way of communicating the detected sign during
 real-time operation.
 
-🔌 Arduino Feedback
+### 🔌 Arduino Feedback
 
 The application can communicate with an Arduino through serial communication.
 
 The hardware interface demonstrates:
 
-💡 LED indicators
-🔔 Warning buzzer
-🚦 Sign-specific responses
-⚠️ Driver warning signals
+- 💡 LED indicators
+- 🔔 Warning buzzer
+- 🚦 Sign-specific responses
+- ⚠️ Driver warning signals
 
 Arduino connectivity is optional. The software can also operate using its
 fallback simulation behavior.
 
-🔧 Hardware Setup
+---
+
+## 🔧 Hardware Setup
 
 The hardware prototype uses an Arduino connected to a breadboard containing
 LED indicators and a buzzer.
@@ -222,14 +237,18 @@ Python Application
     ┌───┴────┐
     ▼        ▼
   💡 LED    🔔 Buzzer
-Arduino Alert Logic
-Serial Command	Hardware Response
-STOP	White LED ON + Buzzer ON
-SPEED	Green LED ON
-CLEAR	LEDs OFF + Buzzer OFF
+
+### Arduino Alert Logic
+
+| Serial Command | Hardware Response |
+|---|---|
+| STOP | White LED ON + Buzzer ON |
+| SPEED | Green LED ON |
+| CLEAR | LEDs OFF + Buzzer OFF |
 
 Arduino source code:
 
+```text
 hardware/
 └── arduino/
     └── traffic_sign_alert.ino
