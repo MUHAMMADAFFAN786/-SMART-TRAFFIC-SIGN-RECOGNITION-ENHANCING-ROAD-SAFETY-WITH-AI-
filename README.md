@@ -335,8 +335,8 @@ NVIDIA Jetson deployment
 GPU-accelerated inference
 GPS-based contextual alerts
 Advanced ADAS integration
-Academic Project
 
+Academic Project
 Degree: B.Tech – Artificial Intelligence & Machine Learning
 Institution: COER University, Roorkee
 Project Type: Academic Project
@@ -346,7 +346,6 @@ Project Team
 Muhammad Affan
 Keshav Dixit
 Mohd Zaid
-Rachit Sharma
 License
 
 This project is licensed under the MIT License.
